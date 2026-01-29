@@ -1,0 +1,29 @@
+{
+  "name": "mindflow",
+  "version": "0.1.0",
+  "description": "AI-Native Project Management with Buddy Mesh",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir dist",
+    "start": "bun run dist/index.js",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "project-management",
+    "ai-native",
+    "buddy-mesh",
+    "multi-agent",
+    "outcomes",
+    "productivity"
+  ],
+  "author": "Alpha Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {}
+}
