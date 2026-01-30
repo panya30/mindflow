@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mindflow - AI-Native Project Management with Buddy Mesh">
+  <meta name="theme-color" content="#8b1538">
+  <title>Mindflow - AI-Native Project Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%238b1538'/><text y='.9em' font-size='80' x='50%' text-anchor='middle' fill='white'>M</text></svg>">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        <span class="logo-text">Mindflow</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#" class="nav-item active" data-view="chat">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Chat</span>
+        </a>
+        <a href="#" class="nav-item" data-view="outcomes">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+          <span>Outcomes</span>
+        </a>
+        <a href="#" class="nav-item" data-view="graph">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="5" r="3"/>
+            <circle cx="19" cy="5" r="3"/>
+            <circle cx="12" cy="19" r="3"/>
+            <line x1="5" y1="8" x2="12" y2="16"/>
+            <line x1="19" y1="8" x2="12" y2="16"/>
+          </svg>
+          <span>Mind Graph</span>
+        </a>
+        <a href="#" class="nav-item" data-view="standup">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span>Standup</span>
+        </a>
+        <a href="#" class="nav-item" data-view="insights">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span>Insights</span>
+        </a>
+        <a href="#" class="nav-item" data-view="team">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>Team</span>
+        </a>
+        <a href="#" class="nav-item" data-view="settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <!-- User Profile -->
+        <div class="user-profile" id="user-profile">
+          <div class="user-avatar" id="user-avatar">👤</div>
+          <div class="user-info">
+            <span class="user-name" id="user-name">User</span>
+            <span class="user-buddy-info" id="user-buddy-info">🦊 Robin</span>
+          </div>
+          <button class="logout-btn" id="logout-btn" title="Logout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+
+        <a href="guide.html" class="nav-item" style="margin-bottom: var(--space-md);">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span>User Guide</span>
+        </a>
+
+        <!-- Buddy Selector -->
+        <div class="buddy-selector" id="buddy-selector">
+          <div class="buddy-current" id="buddy-current">
+            <span class="buddy-emoji" id="current-buddy-emoji">🦊</span>
+            <div class="buddy-info">
+              <span class="buddy-name" id="current-buddy-name">Robin</span>
+              <span class="buddy-tagline" id="current-buddy-tagline">Your thoughtful companion</span>
+            </div>
+            <svg class="buddy-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="buddy-dropdown" id="buddy-dropdown">
+            <!-- Buddies will be loaded dynamically -->
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle theme">
+          <div class="theme-toggle-track">
+            <div class="theme-toggle-thumb">
+              <svg class="theme-icon icon-moon" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+              <svg class="theme-icon icon-sun" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+            </div>
+          </div>
+          <span class="theme-toggle-label" id="theme-label">Dark</span>
+        </div>
+
+        <div class="energy-indicator">
+          <span class="energy-label">Energy</span>
+          <div class="energy-dots">
+            <span class="energy-dot high"></span>
+            <span class="energy-dot medium"></span>
+            <span class="energy-dot low"></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Chat View -->
+      <div id="chat-view" class="view active">
+        <div class="chat-container">
+          <div class="chat-messages" id="chat-messages">
+            <div class="message buddy">
+              <div class="message-avatar">B</div>
+              <div class="message-content">
+                <p>Hey! I'm your Buddy. What outcome are you working towards today?</p>
+                <span class="message-time">Just now</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-container">
+            <div class="quick-actions">
+              <button class="quick-action" data-action="capture">
+                <span class="quick-icon">&#128161;</span>
+                <span>Quick thought</span>
+              </button>
+              <button class="quick-action" data-action="outcome">
+                <span class="quick-icon">&#127919;</span>
+                <span>New outcome</span>
+              </button>
+              <button class="quick-action" data-action="blocker">
+                <span class="quick-icon">&#128679;</span>
+                <span>I'm stuck</span>
+              </button>
+            </div>
+            <form class="chat-form" id="chat-form">
+              <input type="text" class="chat-input" id="chat-input" placeholder="What's on your mind?" autocomplete="off">
+              <button type="submit" class="chat-submit" aria-label="Send message">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outcomes View -->
+      <div id="outcomes-view" class="view">
+        <div class="outcomes-header">
+          <h1>Outcomes</h1>
+          <button class="btn btn-primary" id="new-outcome-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span>New Outcome</span>
+          </button>
+        </div>
+
+        <div class="horizon-tabs">
+          <button class="horizon-tab active" data-horizon="now">
+            <span>Now</span>
+          </button>
+          <button class="horizon-tab" data-horizon="soon">
+            <span>Soon</span>
+          </button>
+          <button class="horizon-tab" data-horizon="later">
+            <span>Later</span>
+          </button>
+          <button class="horizon-tab" data-horizon="someday">
+            <span>Someday</span>
+          </button>
+        </div>
+
+        <div class="outcomes-list" id="outcomes-list">
+          <!-- Outcomes will be rendered here -->
+          <div class="empty-state">
+            <div class="empty-icon">&#127919;</div>
+            <h3>No outcomes yet</h3>
+            <p>What would you like to achieve? Start by defining an outcome.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph View -->
+      <div id="graph-view" class="view">
+        <div class="graph-header">
+          <h1>Mind Graph</h1>
+          <div class="graph-filters">
+            <select class="graph-filter" id="node-type-filter">
+              <option value="">All types</option>
+              <option value="thought">Thoughts</option>
+              <option value="outcome">Outcomes</option>
+              <option value="action">Actions</option>
+              <option value="blocker">Blockers</option>
+              <option value="decision">Decisions</option>
+            </select>
+          </div>
+        </div>
+        <div class="graph-canvas" id="graph-canvas">
+          <svg id="graph-svg"></svg>
+          <div class="graph-placeholder" id="graph-placeholder">
+            <div class="graph-icon">&#128376;</div>
+            <p>Your mind graph will appear here</p>
+            <p style="font-size: 0.875rem; margin-top: 8px;">Add thoughts and outcomes to see connections</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings View -->
+      <div id="settings-view" class="view">
+        <div class="settings-header">
+          <h1>Settings</h1>
+        </div>
+
+        <div class="settings-content">
+          <section class="settings-section">
+            <h2>Your Buddy</h2>
+            <div class="setting-row">
+              <label for="buddy-name">Buddy name</label>
+              <input type="text" class="setting-input" id="buddy-name" value="Buddy" placeholder="What should your buddy be called?">
+            </div>
+            <div class="setting-row">
+              <label for="human-name">Your name</label>
+              <input type="text" class="setting-input" id="human-name" value="" placeholder="What should I call you?">
+            </div>
+          </section>
+
+          <section class="settings-section">
+            <h2>Communication Style</h2>
+            <div class="setting-row">
+              <label for="comm-style">How should I talk to you?</label>
+              <select class="setting-input" id="comm-style">
+                <option value="direct">Direct - Skip the fluff, get to the point</option>
+                <option value="detailed">Detailed - Give me context and explanations</option>
+                <option value="visual">Visual - Use lists, bullets, and structure</option>
+              </select>
+            </div>
+            <div class="setting-row">
+              <label for="work-style">How do you prefer to work?</label>
+              <select class="setting-input" id="work-style">
+                <option value="deep-focus">Deep focus - Long uninterrupted blocks</option>
+                <option value="context-switch">Context switching - Flexible between tasks</option>
+                <option value="collaborative">Collaborative - Work better with others</option>
+              </select>
+            </div>
+          </section>
+
+          <section class="settings-section">
+            <h2>Neurodivergent Support</h2>
+            <div class="setting-row toggle-row">
+              <label>ADHD mode</label>
+              <div class="toggle-container">
+                <input type="checkbox" class="toggle" id="adhd-mode">
+                <span class="toggle-desc">Break tasks into smaller chunks, celebrate wins</span>
+              </div>
+            </div>
+            <div class="setting-row toggle-row">
+              <label>Anxiety aware</label>
+              <div class="toggle-container">
+                <input type="checkbox" class="toggle" id="anxiety-mode">
+                <span class="toggle-desc">Gentle pacing, avoid urgency language</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="settings-section">
+            <h2>Work Patterns</h2>
+            <div class="setting-row">
+              <label for="max-commitments">Max active commitments</label>
+              <input type="number" class="setting-input small" id="max-commitments" value="3" min="1" max="10">
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Standup View -->
+      <div id="standup-view" class="view">
+        <div class="standup-container">
+          <div class="standup-header">
+            <h1>☀️ Daily Standup</h1>
+            <p class="standup-date" id="standup-date"></p>
+          </div>
+
+          <div class="standup-summary" id="standup-summary">
+            <!-- Summary loaded dynamically -->
+          </div>
+
+          <form class="standup-form" id="standup-form">
+            <div class="form-group">
+              <label for="standup-yesterday">
+                <span class="standup-icon">✅</span>
+                What did you accomplish yesterday?
+              </label>
+              <textarea id="standup-yesterday" rows="3" placeholder="I finished..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="standup-today">
+                <span class="standup-icon">🎯</span>
+                What are you working on today?
+              </label>
+              <textarea id="standup-today" rows="3" placeholder="Today I will..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="standup-blockers">
+                <span class="standup-icon">🚧</span>
+                Any blockers or concerns?
+              </label>
+              <textarea id="standup-blockers" rows="2" placeholder="I'm stuck on... I need help with..."></textarea>
+            </div>
+
+            <div class="standup-actions">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <span>Submit Standup</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="standup-response" id="standup-response" style="display: none;">
+            <h3>Buddy's Response</h3>
+            <div class="standup-message" id="standup-message"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team View -->
+      <div id="team-view" class="view">
+        <div class="team-container">
+          <div class="team-header">
+            <h1>👥 AI Team</h1>
+            <p class="team-subtitle">Your AI buddies working together</p>
+          </div>
+
+          <!-- Team Members -->
+          <div class="team-members" id="team-members">
+            <!-- Loaded dynamically -->
+          </div>
+
+          <!-- Team Activity Feed -->
+          <div class="team-section">
+            <div class="team-section-header">
+              <h2>📋 Recent Activity</h2>
+              <button class="btn btn-secondary btn-sm" id="refresh-activity">Refresh</button>
+            </div>
+            <div class="team-activity-feed" id="team-activity-feed">
+              <div class="empty-state">
+                <p>No team activity yet. Hold a team meeting to get started!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Team Actions -->
+          <div class="team-section">
+            <h2>🎯 Quick Actions</h2>
+            <div class="team-quick-actions">
+              <button class="btn btn-primary" id="quick-team-meeting">
+                🗣️ Hold Team Meeting
+              </button>
+              <button class="btn btn-secondary" id="quick-delegation">
+                📋 Get Task Delegation
+              </button>
+            </div>
+          </div>
+
+          <!-- Team Meeting Results -->
+          <div class="team-section" id="team-meeting-section" style="display: none;">
+            <h2>🗣️ Latest Team Meeting</h2>
+            <div class="team-meeting-content" id="team-meeting-content">
+              <!-- Meeting results will be shown here -->
+            </div>
+          </div>
+
+          <!-- Delegation Suggestions -->
+          <div class="team-section" id="delegation-section" style="display: none;">
+            <h2>📋 Delegation Suggestions</h2>
+            <div class="delegation-content" id="delegation-content">
+              <!-- Delegation suggestions will be shown here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insights View -->
+      <div id="insights-view" class="view">
+        <div class="insights-container">
+          <div class="insights-header">
+            <h1>📊 Progress Insights</h1>
+            <button class="btn btn-secondary" id="refresh-insights">Refresh</button>
+          </div>
+
+          <div class="insights-grid" id="insights-grid">
+            <!-- Stats Cards -->
+            <div class="insight-card">
+              <div class="insight-icon">🎯</div>
+              <div class="insight-value" id="insight-total">0</div>
+              <div class="insight-label">Total Outcomes</div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-icon">✅</div>
+              <div class="insight-value" id="insight-achieved">0</div>
+              <div class="insight-label">Achieved</div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-icon">🔥</div>
+              <div class="insight-value" id="insight-active">0</div>
+              <div class="insight-label">In Progress</div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-icon">🚧</div>
+              <div class="insight-value" id="insight-blocked">0</div>
+              <div class="insight-label">Blocked</div>
+            </div>
+          </div>
+
+          <div class="insights-section">
+            <h2>Completion Rate</h2>
+            <div class="completion-bar-container">
+              <div class="completion-bar" id="completion-bar" style="width: 0%"></div>
+            </div>
+            <div class="completion-label" id="completion-label">0% of completed outcomes were achieved</div>
+          </div>
+
+          <div class="insights-section">
+            <h2>By Horizon</h2>
+            <div class="horizon-breakdown" id="horizon-breakdown">
+              <!-- Horizon stats loaded dynamically -->
+            </div>
+          </div>
+
+          <div class="insights-section">
+            <h2>Suggestions</h2>
+            <div class="suggestions-list" id="suggestions-list">
+              <!-- AI suggestions loaded dynamically -->
+            </div>
+          </div>
+
+          <div class="insights-section">
+            <h2>Current Blockers</h2>
+            <div class="blockers-list" id="blockers-list">
+              <p class="empty-message">No blockers - great job! 🎉</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Quick Capture Modal -->
+  <div class="modal" id="quick-capture-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h2>⚡ Quick Capture</h2>
+        <button class="modal-close" id="close-capture-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-form">
+        <div class="form-group">
+          <label for="capture-text">What's on your mind?</label>
+          <textarea id="capture-text" rows="4" placeholder="Type anything... AI will categorize it for you"></textarea>
+        </div>
+        <div class="capture-type-selector">
+          <label class="capture-type">
+            <input type="radio" name="capture-type" value="auto" checked>
+            <span>🤖 Auto-detect</span>
+          </label>
+          <label class="capture-type">
+            <input type="radio" name="capture-type" value="thought">
+            <span>💭 Thought</span>
+          </label>
+          <label class="capture-type">
+            <input type="radio" name="capture-type" value="outcome">
+            <span>🎯 Outcome</span>
+          </label>
+          <label class="capture-type">
+            <input type="radio" name="capture-type" value="action">
+            <span>⚡ Action</span>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="cancel-capture">Cancel</button>
+          <button type="button" class="btn btn-primary" id="submit-capture">Capture</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Templates Modal -->
+  <div class="modal" id="templates-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content" style="max-width: 700px; max-height: 80vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h2>📋 Outcome Templates</h2>
+        <button class="modal-close" id="close-templates-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="templates-grid" id="templates-grid">
+        <!-- Templates loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- New Outcome Modal -->
+  <div class="modal" id="outcome-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>New Outcome</h2>
+        <button class="modal-close" id="close-outcome-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <form class="modal-form" id="outcome-form">
+        <div style="margin-bottom: var(--space-lg);">
+          <button type="button" class="btn btn-secondary" id="use-template-btn" style="width: 100%;">
+            📋 Use a Template
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="outcome-description">What does success look like?</label>
+          <textarea id="outcome-description" placeholder="Describe the outcome you want to achieve..." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="outcome-motivation">Why does this matter?</label>
+          <textarea id="outcome-motivation" placeholder="What's driving this? Why is it important?" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="outcome-horizon">When do you want this?</label>
+          <select id="outcome-horizon">
+            <option value="now">Now - This week</option>
+            <option value="soon">Soon - This month</option>
+            <option value="later" selected>Later - This quarter</option>
+            <option value="someday">Someday - No deadline</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Success criteria (optional)</label>
+          <div id="criteria-list" class="criteria-list">
+            <!-- Criteria inputs will be added here -->
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="add-criterion">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add criterion
+          </button>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="cancel-outcome">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Outcome</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Outcome Detail Modal -->
+  <div class="modal" id="outcome-detail-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <h2 id="detail-modal-title">Outcome Details</h2>
+        <button class="modal-close" id="close-detail-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-form" id="outcome-detail-content">
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="detail-description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Motivation</label>
+          <textarea id="detail-motivation" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Horizon</label>
+          <select id="detail-horizon">
+            <option value="now">Now - This week</option>
+            <option value="soon">Soon - This month</option>
+            <option value="later">Later - This quarter</option>
+            <option value="someday">Someday - No deadline</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="detail-status">
+            <option value="exploring">Exploring</option>
+            <option value="committed">Committed</option>
+            <option value="in-progress">In Progress</option>
+            <option value="blocked">Blocked</option>
+            <option value="achieved">Achieved</option>
+            <option value="abandoned">Abandoned</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Progress</label>
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <input type="range" id="detail-progress" min="0" max="100" value="0" style="flex: 1;">
+            <span id="detail-progress-value" style="min-width: 40px;">0%</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Success Criteria</label>
+          <div id="detail-criteria-list" class="criteria-list"></div>
+        </div>
+
+        <!-- AI Action Suggestions -->
+        <div class="suggestions-section">
+          <h4>💡 AI Suggested Actions</h4>
+          <div id="action-suggestions-container">
+            <p class="empty-message">Click "Get Suggestions" to load AI recommendations</p>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="get-suggestions-btn" style="margin-top: var(--space-md);">
+            🤖 Get Suggestions
+          </button>
+        </div>
+
+        <!-- Team Meeting -->
+        <div class="team-section">
+          <h4>👥 Team Input</h4>
+          <p class="team-description">Get perspectives from all AI buddies on this outcome</p>
+          <button type="button" class="btn btn-primary" id="hold-team-meeting-btn" style="width: 100%;">
+            🎯 Hold Team Meeting
+          </button>
+          <div id="team-meeting-result" class="team-meeting-result" style="display: none;">
+            <!-- Meeting results will be shown here -->
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="delete-outcome" style="color: var(--error);">Delete</button>
+          <div style="flex: 1;"></div>
+          <button type="button" class="btn btn-ghost" id="cancel-detail">Cancel</button>
+          <button type="button" class="btn btn-primary" id="save-outcome">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

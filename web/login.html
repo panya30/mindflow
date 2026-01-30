@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Mindflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%238b1538'/><text y='.9em' font-size='80' x='50%' text-anchor='middle' fill='white'>M</text></svg>">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-primary);
+    }
+
+    .auth-container {
+      width: 100%;
+      max-width: 420px;
+      padding: var(--space-2xl);
+    }
+
+    .auth-logo {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .auth-logo-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: var(--radius-xl);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: var(--space-md);
+    }
+
+    .auth-logo h1 {
+      font-size: var(--font-size-2xl);
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .auth-logo p {
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+    }
+
+    .auth-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: var(--space-md);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .auth-tab:hover {
+      border-color: var(--primary);
+      color: var(--text-primary);
+    }
+
+    .auth-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .auth-form.hidden {
+      display: none;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: var(--space-md);
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: var(--font-size-base);
+      transition: all var(--transition-fast);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-subtle);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-placeholder);
+    }
+
+    .buddy-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .buddy-option {
+      padding: var(--space-md);
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: center;
+    }
+
+    .buddy-option:hover {
+      border-color: var(--primary);
+    }
+
+    .buddy-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-subtle);
+    }
+
+    .buddy-option input {
+      display: none;
+    }
+
+    .buddy-option-emoji {
+      font-size: 2rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .buddy-option-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: var(--font-size-sm);
+    }
+
+    .buddy-option-specialty {
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+      margin-top: var(--space-2xs);
+    }
+
+    .auth-submit {
+      width: 100%;
+      padding: var(--space-md) var(--space-xl);
+      background: var(--primary);
+      border: none;
+      border-radius: var(--radius-md);
+      color: white;
+      font-weight: 600;
+      font-size: var(--font-size-base);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .auth-submit:hover {
+      background: var(--primary-light);
+    }
+
+    .auth-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .auth-error {
+      padding: var(--space-md);
+      background: var(--error-bg);
+      border: 1px solid var(--error);
+      border-radius: var(--radius-md);
+      color: var(--error);
+      font-size: var(--font-size-sm);
+      display: none;
+    }
+
+    .auth-error.visible {
+      display: block;
+    }
+
+    .emoji-picker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .emoji-option {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .emoji-option:hover {
+      border-color: var(--primary);
+    }
+
+    .emoji-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-subtle);
+    }
+
+    .emoji-option input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">M</div>
+      <h1>Mindflow</h1>
+      <p>AI-Native Project Management</p>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="register">Register</button>
+      </div>
+
+      <div class="auth-error" id="auth-error"></div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="login-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="auth-submit">Login</button>
+      </form>
+
+      <!-- Register Form -->
+      <form class="auth-form hidden" id="register-form">
+        <div class="form-group">
+          <label for="register-username">Username</label>
+          <input type="text" id="register-username" placeholder="Choose a username" required>
+        </div>
+        <div class="form-group">
+          <label for="register-display-name">Display Name</label>
+          <input type="text" id="register-display-name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email (optional)</label>
+          <input type="email" id="register-email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" placeholder="Choose a password" required>
+        </div>
+
+        <div class="form-group">
+          <label>Your Avatar</label>
+          <div class="emoji-picker" id="avatar-picker">
+            <label class="emoji-option selected">
+              <input type="radio" name="avatar" value="👤" checked>
+              <span>👤</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="😊">
+              <span>😊</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="🚀">
+              <span>🚀</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="💡">
+              <span>💡</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="🎯">
+              <span>🎯</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="⭐">
+              <span>⭐</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="🌟">
+              <span>🌟</span>
+            </label>
+            <label class="emoji-option">
+              <input type="radio" name="avatar" value="🔥">
+              <span>🔥</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Choose Your AI Buddy</label>
+          <div class="buddy-selector-grid">
+            <label class="buddy-option selected">
+              <input type="radio" name="buddy" value="robin" checked>
+              <div class="buddy-option-emoji">🦊</div>
+              <div class="buddy-option-name">Robin</div>
+              <div class="buddy-option-specialty">Strategic thinking</div>
+            </label>
+            <label class="buddy-option">
+              <input type="radio" name="buddy" value="kai">
+              <div class="buddy-option-emoji">⚡</div>
+              <div class="buddy-option-name">Kai</div>
+              <div class="buddy-option-specialty">Getting things done</div>
+            </label>
+            <label class="buddy-option">
+              <input type="radio" name="buddy" value="luna">
+              <div class="buddy-option-emoji">🌙</div>
+              <div class="buddy-option-name">Luna</div>
+              <div class="buddy-option-specialty">Creative thinking</div>
+            </label>
+            <label class="buddy-option">
+              <input type="radio" name="buddy" value="nami">
+              <div class="buddy-option-emoji">🌊</div>
+              <div class="buddy-option-name">Nami</div>
+              <div class="buddy-option-specialty">Organization</div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="auth-submit">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:3456';
+
+    // Tab switching
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+
+        // Update tabs
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update forms
+        document.querySelectorAll('.auth-form').forEach(f => f.classList.add('hidden'));
+        document.getElementById(`${tabName}-form`).classList.remove('hidden');
+
+        // Clear error
+        hideError();
+      });
+    });
+
+    // Buddy selection
+    document.querySelectorAll('.buddy-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.buddy-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+      });
+    });
+
+    // Avatar selection
+    document.querySelectorAll('.emoji-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.emoji-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+      });
+    });
+
+    // Error handling
+    function showError(message) {
+      const errorEl = document.getElementById('auth-error');
+      errorEl.textContent = message;
+      errorEl.classList.add('visible');
+    }
+
+    function hideError() {
+      document.getElementById('auth-error').classList.remove('visible');
+    }
+
+    // Login form
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideError();
+
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Store user info
+          localStorage.setItem('mindflow-user', JSON.stringify(data.user));
+          // Redirect to main app
+          window.location.href = 'index.html';
+        } else {
+          showError(data.error || 'Login failed');
+        }
+      } catch (error) {
+        showError('Failed to connect to server');
+      }
+    });
+
+    // Register form
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideError();
+
+      const username = document.getElementById('register-username').value.trim();
+      const displayName = document.getElementById('register-display-name').value.trim();
+      const email = document.getElementById('register-email').value.trim();
+      const password = document.getElementById('register-password').value;
+      const avatarEmoji = document.querySelector('input[name="avatar"]:checked').value;
+      const buddyId = document.querySelector('input[name="buddy"]:checked').value;
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username,
+            displayName,
+            email: email || undefined,
+            password,
+            avatarEmoji,
+            buddyId,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Store user info
+          localStorage.setItem('mindflow-user', JSON.stringify(data.user));
+          // Redirect to main app
+          window.location.href = 'index.html';
+        } else {
+          showError(data.error || 'Registration failed');
+        }
+      } catch (error) {
+        showError('Failed to connect to server');
+      }
+    });
+
+    // Check if already logged in
+    const existingUser = localStorage.getItem('mindflow-user');
+    if (existingUser) {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

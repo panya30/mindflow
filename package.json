@@ -5,9 +5,11 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "bun run --watch src/index.ts",
+    "dev": "bun run --watch src/server/index.ts",
+    "dev:web": "bunx serve web",
     "build": "bun build src/index.ts --outdir dist",
-    "start": "bun run dist/index.js",
+    "start": "bun run src/server/index.ts",
+    "start:all": "bun run dev & bun run dev:web",
     "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
@@ -25,5 +27,8 @@
     "@types/bun": "latest",
     "typescript": "^5.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "openai": "^6.17.0"
+  }
 }

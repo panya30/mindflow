@@ -1,20 +1,24 @@
 /**
- * Mindflow - AI-Native Project Management
+ * Mindflow
  *
- * "Humans think, Buddies coordinate"
+ * AI-Native Project Management
+ * Outcomes over Tasks. Horizons over Deadlines. Buddies over Bosses.
  */
 
-console.log(`
-╔═══════════════════════════════════════════════════════════╗
-║                      MINDFLOW                              ║
-║        AI-Native Project Management with Buddy Mesh        ║
-╠═══════════════════════════════════════════════════════════╣
-║                                                           ║
-║   "Humans think, Buddies coordinate"                      ║
-║                                                           ║
-║   Phase 1: Solo Buddy (Coming Soon)                       ║
-║                                                           ║
-╚═══════════════════════════════════════════════════════════╝
-`);
+// Core Types
+export * from './types';
 
-export const VERSION = '0.1.0';
+// Mind Graph
+export { MindGraph, type GraphPattern, type Subgraph } from './graph';
+
+// Storage
+export { MindflowDatabase, type DatabaseConfig } from './storage';
+
+// AI Buddy
+export { AIBuddy, type BuddyState, type BuddyResponse } from './buddy';
+
+// Outcomes
+export { OutcomeManager, type OutcomeFilter, type OutcomeProgress, type OutcomeTree } from './outcomes';
+
+// Server
+export { MindflowServer, type ServerConfig } from './server';

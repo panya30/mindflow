@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mindflow User Guide - Learn how to use AI-Native Project Management">
+  <meta name="theme-color" content="#8b1538">
+  <title>Mindflow - User Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%238b1538'/><text y='.9em' font-size='80' x='50%' text-anchor='middle' fill='white'>M</text></svg>">
+  <style>
+    .guide-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: var(--space-2xl);
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--text-primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .guide-header p {
+      color: var(--text-secondary);
+      font-size: var(--font-size-lg);
+    }
+
+    .guide-nav {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    .guide-nav a {
+      padding: var(--space-sm) var(--space-lg);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .guide-nav a:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary);
+      color: var(--primary-light);
+    }
+
+    .guide-section {
+      margin-bottom: var(--space-3xl);
+    }
+
+    .guide-section h2 {
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .guide-section h2 .icon {
+      font-size: 1.5rem;
+    }
+
+    .guide-section h3 {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      margin: var(--space-xl) 0 var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .guide-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+    }
+
+    .guide-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--space-lg);
+    }
+
+    .guide-section li {
+      position: relative;
+      padding-left: var(--space-xl);
+      margin-bottom: var(--space-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .guide-section li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+
+    .feature-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all var(--transition-fast);
+    }
+
+    .feature-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .feature-card .icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .feature-card h4 {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-card p {
+      font-size: var(--font-size-sm);
+      margin: 0;
+    }
+
+    .code-block {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin: var(--space-md) 0;
+      font-family: var(--font-mono);
+      font-size: var(--font-size-sm);
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      color: var(--text-primary);
+    }
+
+    .code-block .comment {
+      color: var(--text-muted);
+    }
+
+    .code-block .command {
+      color: var(--success);
+    }
+
+    .shortcut-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-lg) 0;
+    }
+
+    .shortcut-table th,
+    .shortcut-table td {
+      padding: var(--space-md);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .shortcut-table th {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: var(--font-size-sm);
+    }
+
+    .shortcut-table td:first-child {
+      font-family: var(--font-mono);
+      color: var(--primary-light);
+    }
+
+    .tip-box {
+      background: var(--primary-subtle);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .tip-box strong {
+      color: var(--primary-light);
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .warning-box strong {
+      color: var(--warning);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: var(--space-xl);
+      font-size: var(--font-size-sm);
+      transition: color var(--transition-fast);
+    }
+
+    .back-link:hover {
+      color: var(--primary-light);
+    }
+
+    .philosophy-quote {
+      font-size: var(--font-size-xl);
+      font-style: italic;
+      color: var(--text-secondary);
+      text-align: center;
+      padding: var(--space-2xl);
+      border-left: 3px solid var(--primary);
+      background: var(--bg-tertiary);
+      margin: var(--space-xl) 0;
+    }
+
+    @media (max-width: 768px) {
+      .guide-container {
+        padding: var(--space-lg);
+      }
+
+      .guide-header h1 {
+        font-size: 2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Back to Mindflow
+    </a>
+
+    <header class="guide-header">
+      <h1>Mindflow User Guide</h1>
+      <p>AI-Native Project Management with Buddy Mesh</p>
+    </header>
+
+    <nav class="guide-nav">
+      <a href="#getting-started">Getting Started</a>
+      <a href="#features">Features</a>
+      <a href="#chat">Chat with Buddy</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#graph">Mind Graph</a>
+      <a href="#settings">Settings</a>
+      <a href="#shortcuts">Shortcuts</a>
+      <a href="#philosophy">Philosophy</a>
+    </nav>
+
+    <!-- Getting Started -->
+    <section id="getting-started" class="guide-section">
+      <h2><span class="icon">&#128640;</span> Getting Started</h2>
+
+      <p>Mindflow is a new approach to project management that puts you first. Instead of managing tasks, you focus on <strong>outcomes</strong> - what success looks like. Your AI Buddy helps you think, not just do.</p>
+
+      <h3>Quick Setup</h3>
+
+      <div class="code-block">
+        <code>
+          <span class="comment"># Clone and install</span><br>
+          <span class="command">cd mindflow-dev</span><br>
+          <span class="command">bun install</span><br><br>
+          <span class="comment"># Set your API key for AI chat</span><br>
+          <span class="command">export OPENAI_API_KEY="your-key-here"</span><br><br>
+          <span class="comment"># Start the server</span><br>
+          <span class="command">bun run dev</span><br><br>
+          <span class="comment"># In another terminal, serve the web UI</span><br>
+          <span class="command">bunx serve web -p 3080</span><br><br>
+          <span class="comment"># Open in browser</span><br>
+          <span class="command">open http://localhost:3080</span>
+        </code>
+      </div>
+
+      <div class="tip-box">
+        <strong>Tip:</strong> Without an API key, the chat will still work but won't have full AI responses. All other features (outcomes, graph, settings) work without an API key.
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="guide-section">
+      <h2><span class="icon">&#10024;</span> Features</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">&#128172;</div>
+          <h4>AI Buddy Chat</h4>
+          <p>Have natural conversations with your personal AI buddy. Capture thoughts, define outcomes, and get unstuck - all through chat.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">&#127919;</div>
+          <h4>Outcomes, Not Tasks</h4>
+          <p>Focus on what success looks like, not endless to-do lists. Define outcomes with success criteria and track your progress.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">&#128376;</div>
+          <h4>Mind Graph</h4>
+          <p>See how everything connects. Your thoughts, outcomes, and decisions form a visual knowledge graph.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">&#9200;</div>
+          <h4>Horizons, Not Deadlines</h4>
+          <p>Replace stressful deadlines with flexible horizons: Now, Soon, Later, Someday. Work at your own pace.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">&#129504;</div>
+          <h4>Neurodivergent Support</h4>
+          <p>ADHD mode and anxiety-aware settings help you work the way your brain works. No judgment, just support.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">&#128274;</div>
+          <h4>Privacy First</h4>
+          <p>Your data stays on your machine. SQLite database, local storage. You own your information.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section id="chat" class="guide-section">
+      <h2><span class="icon">&#128172;</span> Chat with Buddy</h2>
+
+      <p>Your AI Buddy is your thinking partner, not just an assistant. Talk naturally about what you're working on, and Buddy will help you clarify your thoughts.</p>
+
+      <h3>Quick Actions</h3>
+      <ul>
+        <li><strong>Quick thought</strong> - Capture a fleeting idea before you forget it</li>
+        <li><strong>New outcome</strong> - Start defining what success looks like</li>
+        <li><strong>I'm stuck</strong> - Get help when you hit a blocker</li>
+      </ul>
+
+      <h3>What You Can Say</h3>
+      <ul>
+        <li>"I want to launch my product by next month"</li>
+        <li>"I'm feeling overwhelmed with all these tasks"</li>
+        <li>"Help me break down this big project"</li>
+        <li>"What should I focus on today?"</li>
+        <li>"I'm stuck on the authentication flow"</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>Tip:</strong> Your Buddy adapts to your communication style. Set it in Settings to get responses that match how you think.
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section id="outcomes" class="guide-section">
+      <h2><span class="icon">&#127919;</span> Outcomes</h2>
+
+      <p>Outcomes are the heart of Mindflow. Instead of listing tasks, you describe what success looks like. This shift in thinking helps you stay focused on what matters.</p>
+
+      <h3>Creating an Outcome</h3>
+      <ol style="list-style: decimal; padding-left: var(--space-xl); color: var(--text-secondary);">
+        <li>Click <strong>New Outcome</strong> or press <kbd>Cmd+N</kbd></li>
+        <li>Describe what success looks like</li>
+        <li>Explain why it matters (motivation)</li>
+        <li>Choose a horizon (Now, Soon, Later, Someday)</li>
+        <li>Optionally add success criteria</li>
+      </ol>
+
+      <h3>Horizons Explained</h3>
+      <ul>
+        <li><strong>Now</strong> - This week. Your current focus.</li>
+        <li><strong>Soon</strong> - This month. Coming up next.</li>
+        <li><strong>Later</strong> - This quarter. On the roadmap.</li>
+        <li><strong>Someday</strong> - No deadline. Dreams and ideas.</li>
+      </ul>
+
+      <h3>Outcome Statuses</h3>
+      <ul>
+        <li><strong>Exploring</strong> - Still figuring out what this means</li>
+        <li><strong>Committed</strong> - Ready to work on this</li>
+        <li><strong>In Progress</strong> - Actively working on it</li>
+        <li><strong>Blocked</strong> - Stuck and need help</li>
+        <li><strong>Review</strong> - Ready for verification</li>
+        <li><strong>Achieved</strong> - Success! You did it!</li>
+      </ul>
+    </section>
+
+    <!-- Mind Graph -->
+    <section id="graph" class="guide-section">
+      <h2><span class="icon">&#128376;</span> Mind Graph</h2>
+
+      <p>The Mind Graph shows how all your thoughts and outcomes connect. It's a visual representation of your thinking.</p>
+
+      <h3>Node Types</h3>
+      <ul>
+        <li><strong style="color: #8b1538;">Outcomes</strong> - What you're trying to achieve</li>
+        <li><strong style="color: #4a9eff;">Thoughts</strong> - Ideas and observations</li>
+        <li><strong style="color: #00d26a;">Actions</strong> - Things to do</li>
+        <li><strong style="color: #ff4757;">Blockers</strong> - What's stopping you</li>
+        <li><strong style="color: #ffb800;">Decisions</strong> - Choices you've made</li>
+        <li><strong style="color: #a855f7;">People</strong> - Team members and collaborators</li>
+      </ul>
+
+      <h3>Using the Graph</h3>
+      <ul>
+        <li>Click on any node to see its details</li>
+        <li>Use the filter dropdown to show only specific types</li>
+        <li>The graph automatically arranges based on connections</li>
+        <li>Larger nodes are more important (outcomes, decisions)</li>
+      </ul>
+    </section>
+
+    <!-- Settings -->
+    <section id="settings" class="guide-section">
+      <h2><span class="icon">&#9881;</span> Settings</h2>
+
+      <h3>Your Buddy</h3>
+      <ul>
+        <li><strong>Buddy name</strong> - What to call your AI companion</li>
+        <li><strong>Your name</strong> - So Buddy can address you personally</li>
+      </ul>
+
+      <h3>Communication Style</h3>
+      <ul>
+        <li><strong>Direct</strong> - Skip the fluff, get to the point</li>
+        <li><strong>Detailed</strong> - Provide context and explanations</li>
+        <li><strong>Visual</strong> - Use lists, bullets, and structure</li>
+      </ul>
+
+      <h3>Work Style</h3>
+      <ul>
+        <li><strong>Deep focus</strong> - Long uninterrupted work blocks</li>
+        <li><strong>Context switching</strong> - Flexible between tasks</li>
+        <li><strong>Collaborative</strong> - Work better with others</li>
+      </ul>
+
+      <h3>Neurodivergent Support</h3>
+      <ul>
+        <li><strong>ADHD mode</strong> - Breaks tasks into smaller chunks, celebrates wins, helps maintain focus</li>
+        <li><strong>Anxiety aware</strong> - Gentle pacing, avoids urgency language, validates feelings</li>
+      </ul>
+
+      <h3>Work Patterns</h3>
+      <ul>
+        <li><strong>Max commitments</strong> - How many active outcomes to allow (prevents overload)</li>
+      </ul>
+    </section>
+
+    <!-- Keyboard Shortcuts -->
+    <section id="shortcuts" class="guide-section">
+      <h2><span class="icon">&#9000;</span> Keyboard Shortcuts</h2>
+
+      <table class="shortcut-table">
+        <thead>
+          <tr>
+            <th>Shortcut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cmd + K</td>
+            <td>Focus chat input</td>
+          </tr>
+          <tr>
+            <td>Cmd + O</td>
+            <td>Go to Outcomes view</td>
+          </tr>
+          <tr>
+            <td>Cmd + G</td>
+            <td>Go to Graph view</td>
+          </tr>
+          <tr>
+            <td>Cmd + N</td>
+            <td>Create new outcome (when on Outcomes view)</td>
+          </tr>
+          <tr>
+            <td>Escape</td>
+            <td>Close modal</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <strong>Tip:</strong> On Windows/Linux, use <kbd>Ctrl</kbd> instead of <kbd>Cmd</kbd>.
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section id="philosophy" class="guide-section">
+      <h2><span class="icon">&#128161;</span> Philosophy</h2>
+
+      <div class="philosophy-quote">
+        "Humans think, Buddies coordinate"
+      </div>
+
+      <p>Mindflow is built on four core principles:</p>
+
+      <h3>1. Outcomes Over Tasks</h3>
+      <p>Traditional project management focuses on tasks - what to do. Mindflow focuses on outcomes - what success looks like. This shift helps you stay focused on what actually matters instead of getting lost in busywork.</p>
+
+      <h3>2. Horizons Over Deadlines</h3>
+      <p>Deadlines create anxiety. Horizons create clarity. Instead of "due Friday at 5pm", you think "this is a Now priority" or "this is for Later". It's more human, less stressful.</p>
+
+      <h3>3. Buddies Over Bosses</h3>
+      <p>Your AI Buddy isn't here to manage you or check up on your work. It's a thinking partner that helps you clarify your thoughts and stay on track. No surveillance, just support.</p>
+
+      <h3>4. Graphs Over Lists</h3>
+      <p>Real work isn't linear. Ideas connect, outcomes depend on each other, decisions cascade. The Mind Graph shows these relationships instead of hiding them in flat lists.</p>
+
+      <div class="warning-box">
+        <strong>Remember:</strong> Mindflow is a tool to help you think, not to think for you. The Oracle keeps the human human.
+      </div>
+    </section>
+
+    <footer style="text-align: center; padding: var(--space-2xl); border-top: 1px solid var(--border); margin-top: var(--space-3xl); color: var(--text-muted);">
+      <p>Mindflow v0.1.0</p>
+      <p>Part of the Panya Ecosystem</p>
+    </footer>
+  </div>
+
+  <script>
+    // Apply saved theme
+    const savedTheme = localStorage.getItem('mindflow-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+</body>
+</html>
